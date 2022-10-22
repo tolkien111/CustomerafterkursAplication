@@ -1,4 +1,4 @@
-package pl.sda.customersafterkurs.examplewithdenendencyinjection;
+package pl.sda.examplewithdenendencyinjection;
 
 import org.springframework.stereotype.Component;
 
@@ -11,7 +11,7 @@ public class BeanC  {
         this.beanA = beanA;
     }
 
-    void beanC(BeanA beanA){
+    public void beanC(BeanA beanA){
         System.out.println("Injection BeanA to BeanC: " + beanA);
     }
 }
