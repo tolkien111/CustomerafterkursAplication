@@ -1,4 +1,4 @@
-package pl.sda.customersafterkurs.examplewithdenendencyinjection;
+package pl.sda.examplewithdenendencyinjection;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
