@@ -36,4 +36,6 @@ public final class  Address { //final - nie można dziedziczyć
         this.zipCode = zipCode;
         this.countryCode = countryCode;
     }
+
+
 }

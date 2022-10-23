@@ -4,6 +4,7 @@ package pl.sda.customersafterkurs.entity;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -21,10 +22,12 @@ import java.util.UUID;
 public abstract class Customer {
 
     @Id
+    @Type(type = "org.hibernate.type.UUIDCharType")
     private UUID id;
     private String email;
 
     @OneToMany
+    @JoinColumn (name = "customer_id")
     private List<Address> addresses;
 
     protected Customer(String email) { // też protected aby miały dostęp tylko klasy dziedziczące
