@@ -1,14 +1,13 @@
 package pl.sda.customersafterkurs;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 public class CustomerRegistration {
 
-    private final CustomerRepository repository;
+    private final CustomerDatabase repository;
 
-    public CustomerRegistration(CustomerRepository repository){
+    public CustomerRegistration(CustomerDatabase repository){
         this.repository = repository;
     }
 

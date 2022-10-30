@@ -14,20 +14,20 @@ import java.util.UUID;
 
 
 @Entity
-@Table (name = "customers")
-@Inheritance (strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn (name = "customer_type")
-@NoArgsConstructor (access = AccessLevel.PROTECTED) // protected żeby podklasy mogły się dostać
+@Table(name = "customers")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "customer_type")
+@NoArgsConstructor(access = AccessLevel.PROTECTED) // protected żeby podklasy mogły się dostać
 @Getter
 public abstract class Customer {
 
     @Id
-    @Type(type = "org.hibernate.type.UUIDCharType")
+    @Type(type = "org.hibernate.type.UUIDCharType") // można używać org.hibernate.type.UUIDBinaryType
     private UUID id;
     private String email;
 
-    @OneToMany
-    @JoinColumn (name = "customer_id")
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "customer_id")
     private List<Address> addresses;
 
     protected Customer(String email) { // też protected aby miały dostęp tylko klasy dziedziczące
@@ -35,6 +35,13 @@ public abstract class Customer {
         this.email = email;
         addresses = new ArrayList<>();
     }
+
+    public void addAddress(Address address) {
+        if (address != null && !addresses.contains(address)) {
+            addresses.add(address);
+        }
+    }
+
 
     @Override
     public boolean equals(Object o) {
