@@ -4,10 +4,9 @@ import lombok.*;
 
 import java.util.UUID;
 
-@Getter
-@EqualsAndHashCode
-@ToString
-public record RegisteredCustomerId(@NonNull UUID id) {
+@Value
+public class RegisteredCustomerId {
 
-    //zmieniony na rekord
+    @NonNull
+    UUID id;
 }

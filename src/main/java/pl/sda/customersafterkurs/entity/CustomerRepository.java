@@ -85,7 +85,8 @@ public interface CustomerRepository extends JpaRepository<Customer, UUID> {
     @Query("SELECT count(a) FROM Address a")
     int countAllAddresses();
 
-    //Do SERVICE
+
+    //To SERVICE
 
     @Query("SELECT (count(c) > 0) FROM Company c WHERE LOWER(c.email) = LOWER(?1)") //() przy count dla pewności
     boolean emailExists(String email);

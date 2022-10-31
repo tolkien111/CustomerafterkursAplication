@@ -16,12 +16,11 @@ import javax.transaction.Transactional;
 @Service
 @Transactional
 //@RequiredArgsConstructor
-public final class CustomerService { // podczas zajęć brak możliwości wpisania final z uwagi że Spring podczes transakcji (@Transactional) odziedzicza klase i owija klasę we wrappera(klasę opakowującą), w najnowszej wersji można wpisać final
-
+public class CustomerService { // podczas zajęć brak możliwości wpisania final z uwagi że Spring podczes transakcji (@Transactional) odziedzicza klase i owija klasę we wrappera(klasę opakowującą), w najnowszej wersji można wpisać final
+                                //update, final trzeba usunąć ponieważ mimo że nie podkreśla to nie może podnieść kontekstu
     //    @NonNull
     private final CustomerRepository repository;
 
-    // inne podejście do kostruktora
     public CustomerService(@NonNull CustomerRepository repository) {
         this.repository = repository;
     }
@@ -32,7 +31,7 @@ public final class CustomerService { // podczas zajęć brak możliwości wpisan
         if (repository.vatExists(form.getVat()))
             throw new VatAlreadyExistsException("vat exists: " + form.getVat());
 
-        final var company = new Company(form.getEmail(), form.name(), form.vat());
+        final var company = new Company(form.getEmail(), form.getName(), form.getVat());
         repository.save(company);
 
         return new RegisteredCustomerId(company.getId());
