@@ -7,6 +7,8 @@ import pl.sda.customersafterkurs.entity.Company;
 import pl.sda.customersafterkurs.entity.CustomerRepository;
 import pl.sda.customersafterkurs.service.dto.RegisterCompanyForm;
 import pl.sda.customersafterkurs.service.dto.RegisteredCustomerId;
+import pl.sda.customersafterkurs.service.exception.EmailAlreadyExistsException;
+import pl.sda.customersafterkurs.service.exception.VatAlreadyExistsException;
 
 import javax.transaction.Transactional;
 
