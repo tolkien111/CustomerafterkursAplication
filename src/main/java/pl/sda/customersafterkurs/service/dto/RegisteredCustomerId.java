@@ -1,13 +1,13 @@
 package pl.sda.customersafterkurs.service.dto;
 
-import lombok.NonNull;
-import lombok.Value;
+import lombok.*;
 
 import java.util.UUID;
 
-@Value
-public class RegisteredCustomerId {
+@Getter
+@EqualsAndHashCode
+@ToString
+public record RegisteredCustomerId(@NonNull UUID id) {
 
-    @NonNull
-    UUID id;
+    //zmieniony na rekord
 }

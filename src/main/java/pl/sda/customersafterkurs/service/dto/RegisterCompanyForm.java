@@ -1,15 +1,16 @@
 package pl.sda.customersafterkurs.service.dto;
 
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.NonNull;
-import lombok.Value;
+import lombok.ToString;
 
-@Value
-public class RegisterCompanyForm {
 
-    @NonNull
-    String name;
-    @NonNull
-    String vat;
-    @NonNull
-    String email;
+@Getter
+@EqualsAndHashCode
+@ToString
+public record RegisterCompanyForm(@NonNull String name, @NonNull String vat,
+                                  @NonNull String email) {
+    //zmieniony na rekord
+
 }

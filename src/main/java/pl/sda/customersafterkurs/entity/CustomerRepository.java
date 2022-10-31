@@ -43,9 +43,6 @@ public interface CustomerRepository extends JpaRepository<Customer, UUID> {
             + "ORDER BY a.countryCode ASC")
     List<CountCustomerByCountryCode> countCustomersByCountryCode();
 
-
-
-
     interface CountCustomerByCountryCode {
         String getCountryCode();
 
@@ -69,13 +66,13 @@ public interface CustomerRepository extends JpaRepository<Customer, UUID> {
     @Query("UPDATE Address SET countryCode = :countryCode WHERE city = :city")
     int updateCountryCodeForCity(String city, String countryCode);
 
-        //dodatkowe sprawdzenie dla powyższego Update
+    //dodatkowe sprawdzenie dla powyższego Update
 
     @Query("SELECT count(a) FROM Address a WHERE a.city = :city "
             + "AND a.countryCode = :countryCode")
     int countCityWithCountryCode(String city, String countryCode);
 
-    @Query ("FROM Address a WHERE a.city = :city")
+    @Query("FROM Address a WHERE a.city = :city")
     List<Address> findByCity(String city);
 
 
@@ -88,4 +85,11 @@ public interface CustomerRepository extends JpaRepository<Customer, UUID> {
     @Query("SELECT count(a) FROM Address a")
     int countAllAddresses();
 
+    //Do SERVICE
+
+    @Query("SELECT (count(c) > 0) FROM Company c WHERE LOWER(c.email) = LOWER(?1)") //() przy count dla pewności
+    boolean emailExists(String email);
+
+    @Query("SELECT (count(c) > 0) FROM Company c WHERE LOWER(c.vat) = LOWER(?1)")
+    boolean vatExists(String vat);
 }
