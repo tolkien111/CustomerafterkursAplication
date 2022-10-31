@@ -228,7 +228,7 @@ class CustomerRepositoryTest {
         final var customer05 = new Company("agrw@WP.PL", "Firma", "PL3243000009555");
 
         customer01.addAddress(new Address("str", "Berlin", "04-222", "DE"));
-        customer01.addAddress(new Address("stra", "New Jork", "66-222", "DE"));
+        customer01.addAddress(new Address("stra", "New Jork", "66-222", "US"));
         customer01.addAddress(new Address("Nowa ", "Berlin", "67-222", "DE"));
         customer02.addAddress(new Address("sds", "Berlin", "14-222", "DE"));
         customer03.addAddress(new Address("Jer", "Elbląg", "55-222", "PL"));

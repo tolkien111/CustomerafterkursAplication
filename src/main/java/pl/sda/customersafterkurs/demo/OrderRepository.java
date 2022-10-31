@@ -1,4 +1,4 @@
-package pl.sda.customersafterkurs;
+package pl.sda.customersafterkurs.demo;
 
 import org.springframework.stereotype.Component;
 
