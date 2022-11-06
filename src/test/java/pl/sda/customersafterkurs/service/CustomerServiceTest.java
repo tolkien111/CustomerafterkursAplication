@@ -12,6 +12,7 @@ import pl.sda.customersafterkurs.service.dto.RegisterCompanyForm;
 import pl.sda.customersafterkurs.service.dto.RegisterPersonForm;
 import pl.sda.customersafterkurs.service.exception.EmailAlreadyExistsException;
 import pl.sda.customersafterkurs.service.exception.PeselAlreadyExistsException;
+import pl.sda.customersafterkurs.service.exception.PeselNotValidateException;
 import pl.sda.customersafterkurs.service.exception.VatAlreadyExistsException;
 
 import javax.transaction.Transactional;
@@ -100,4 +101,13 @@ class CustomerServiceTest {
         assertThrows(PeselAlreadyExistsException.class, () -> service.registerPerson(form));
 
     }
+
+ /**   @Test
+    void shouldNotRegisterPersonIfPeselIsNotValid(){
+        //Given
+        final var form = new RegisterPersonForm("fl@wp.pl", "Jerzy", "Romanow", "0123543");
+        //When & Then
+        assertThrows(PeselNotValidateException.class, () -> service.registerPerson(form));
+
+    }*/
 }

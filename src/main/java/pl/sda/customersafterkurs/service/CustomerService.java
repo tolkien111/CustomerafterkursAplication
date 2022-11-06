@@ -10,7 +10,9 @@ import pl.sda.customersafterkurs.service.dto.RegisterPersonForm;
 import pl.sda.customersafterkurs.service.dto.RegisteredCustomerId;
 import pl.sda.customersafterkurs.service.exception.EmailAlreadyExistsException;
 import pl.sda.customersafterkurs.service.exception.PeselAlreadyExistsException;
+import pl.sda.customersafterkurs.service.exception.PeselNotValidateException;
 import pl.sda.customersafterkurs.service.exception.VatAlreadyExistsException;
+import pl.sda.customersafterkurs.service.validation.PeselValidation;
 
 import javax.transaction.Transactional;
 
@@ -19,7 +21,7 @@ import javax.transaction.Transactional;
 @Transactional
 //@RequiredArgsConstructor
 public class CustomerService { // podczas zajęć brak możliwości wpisania final z uwagi że Spring podczes transakcji (@Transactional) odziedzicza klase i owija klasę we wrappera(klasę opakowującą), w najnowszej wersji można wpisać final
-                                //update, final trzeba usunąć ponieważ mimo że nie podkreśla to nie może podnieść kontekstu
+    //update, final trzeba usunąć ponieważ mimo że nie podkreśla to nie może podnieść kontekstu
     //    @NonNull
     private final CustomerRepository repository;
 
@@ -45,6 +47,8 @@ public class CustomerService { // podczas zajęć brak możliwości wpisania fin
             throw new EmailAlreadyExistsException("email exists: " + form.getEmail());
         if (repository.peselExists(form.getPesel()))
             throw new PeselAlreadyExistsException("pesel exists: " + form.getPesel());
+//        if (!PeselValidation.peselIsValid(form.getPesel()))
+//            throw new PeselNotValidateException("pesel " + form.getPesel() + " is not correct");
 
         final var person = new Person(form.getEmail(), form.getFirstName(), form.getLastName(), form.getPesel());
         repository.save(person);
