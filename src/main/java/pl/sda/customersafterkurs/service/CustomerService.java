@@ -1,13 +1,15 @@
 package pl.sda.customersafterkurs.service;
 
 import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import pl.sda.customersafterkurs.entity.Company;
 import pl.sda.customersafterkurs.entity.CustomerRepository;
+import pl.sda.customersafterkurs.entity.Person;
 import pl.sda.customersafterkurs.service.dto.RegisterCompanyForm;
+import pl.sda.customersafterkurs.service.dto.RegisterPersonForm;
 import pl.sda.customersafterkurs.service.dto.RegisteredCustomerId;
 import pl.sda.customersafterkurs.service.exception.EmailAlreadyExistsException;
+import pl.sda.customersafterkurs.service.exception.PeselAlreadyExistsException;
 import pl.sda.customersafterkurs.service.exception.VatAlreadyExistsException;
 
 import javax.transaction.Transactional;
@@ -36,6 +38,18 @@ public class CustomerService { // podczas zajęć brak możliwości wpisania fin
 
         return new RegisteredCustomerId(company.getId());
 
+    }
+
+    public RegisteredCustomerId registerPerson(@NonNull RegisterPersonForm form) {
+        if (repository.emailExists(form.getEmail()))
+            throw new EmailAlreadyExistsException("email exists: " + form.getEmail());
+        if (repository.peselExists(form.getPesel()))
+            throw new PeselAlreadyExistsException("pesel exists: " + form.getPesel());
+
+        final var person = new Person(form.getEmail(), form.getFirstName(), form.getLastName(), form.getPesel());
+        repository.save(person);
+
+        return new RegisteredCustomerId(person.getId());
     }
 
 }

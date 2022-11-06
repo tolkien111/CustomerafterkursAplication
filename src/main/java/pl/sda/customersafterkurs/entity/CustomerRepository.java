@@ -88,9 +88,13 @@ public interface CustomerRepository extends JpaRepository<Customer, UUID> {
 
     //To SERVICE
 
-    @Query("SELECT (count(c) > 0) FROM Company c WHERE LOWER(c.email) = LOWER(?1)") //() przy count dla pewności
+    @Query("SELECT (count(c) > 0) FROM Customer c WHERE LOWER(c.email) = LOWER(?1)") //() przy count dla pewności
     boolean emailExists(String email);
 
     @Query("SELECT (count(c) > 0) FROM Company c WHERE LOWER(c.vat) = LOWER(?1)")
     boolean vatExists(String vat);
+
+    @Query("SELECT count(p) > 0 FROM Person p WHERE p.pesel = :pesel")
+    boolean peselExists(String pesel);
+
 }
