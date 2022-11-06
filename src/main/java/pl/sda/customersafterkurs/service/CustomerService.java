@@ -10,9 +10,7 @@ import pl.sda.customersafterkurs.service.dto.RegisterPersonForm;
 import pl.sda.customersafterkurs.service.dto.RegisteredCustomerId;
 import pl.sda.customersafterkurs.service.exception.EmailAlreadyExistsException;
 import pl.sda.customersafterkurs.service.exception.PeselAlreadyExistsException;
-import pl.sda.customersafterkurs.service.exception.PeselNotValidateException;
 import pl.sda.customersafterkurs.service.exception.VatAlreadyExistsException;
-import pl.sda.customersafterkurs.service.validation.PeselValidation;
 
 import javax.transaction.Transactional;
 
@@ -35,7 +33,7 @@ public class CustomerService { // podczas zajęć brak możliwości wpisania fin
         if (repository.vatExists(form.getVat()))
             throw new VatAlreadyExistsException("vat exists: " + form.getVat());
 
-        final var company = new Company(form.getEmail(), form.getName(), form.getVat());
+        final var company = Company.createWith(form);
         repository.save(company);
 
         return new RegisteredCustomerId(company.getId());
@@ -50,7 +48,7 @@ public class CustomerService { // podczas zajęć brak możliwości wpisania fin
 //        if (!PeselValidation.peselIsValid(form.getPesel()))
 //            throw new PeselNotValidateException("pesel " + form.getPesel() + " is not correct");
 //
-        final var person = new Person(form.getEmail(), form.getFirstName(), form.getLastName(), form.getPesel());
+        final var person = Person.createWith(form);
         repository.save(person);
 
         return new RegisteredCustomerId(person.getId());
