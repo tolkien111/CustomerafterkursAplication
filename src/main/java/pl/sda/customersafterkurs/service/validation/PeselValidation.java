@@ -10,6 +10,7 @@ public class PeselValidation {
     public static boolean peselIsValid(String peselToValidate) {
         return peselToValidate.matches(pattern);
                 //Pattern.compile(pattern).matcher(peselToValidate).matches(); //drugie podejście do tematu
+        //
 
     }
 }

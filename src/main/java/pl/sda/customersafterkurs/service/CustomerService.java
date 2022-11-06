@@ -49,7 +49,7 @@ public class CustomerService { // podczas zajęć brak możliwości wpisania fin
             throw new PeselAlreadyExistsException("pesel exists: " + form.getPesel());
 //        if (!PeselValidation.peselIsValid(form.getPesel()))
 //            throw new PeselNotValidateException("pesel " + form.getPesel() + " is not correct");
-
+//
         final var person = new Person(form.getEmail(), form.getFirstName(), form.getLastName(), form.getPesel());
         repository.save(person);
 
