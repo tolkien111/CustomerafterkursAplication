@@ -18,12 +18,12 @@ import javax.transaction.Transactional;
 @Service
 @Transactional
 //@RequiredArgsConstructor
-public class CustomerService { // podczas zajęć brak możliwości wpisania final z uwagi że Spring podczes transakcji (@Transactional) odziedzicza klase i owija klasę we wrappera(klasę opakowującą), w najnowszej wersji można wpisać final
+public class CustomerRegistrationService { // podczas zajęć brak możliwości wpisania final z uwagi że Spring podczes transakcji (@Transactional) odziedzicza klase i owija klasę we wrappera(klasę opakowującą), w najnowszej wersji można wpisać final
     //update, final trzeba usunąć ponieważ mimo że nie podkreśla to nie może podnieść kontekstu
     //    @NonNull
     private final CustomerRepository repository;
 
-    public CustomerService(@NonNull CustomerRepository repository) {
+    public CustomerRegistrationService(@NonNull CustomerRepository repository) {
         this.repository = repository;
     }
 

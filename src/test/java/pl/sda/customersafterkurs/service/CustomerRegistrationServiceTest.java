@@ -1,8 +1,6 @@
 package pl.sda.customersafterkurs.service;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.function.Executable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import pl.sda.customersafterkurs.entity.Company;
@@ -12,7 +10,6 @@ import pl.sda.customersafterkurs.service.dto.RegisterCompanyForm;
 import pl.sda.customersafterkurs.service.dto.RegisterPersonForm;
 import pl.sda.customersafterkurs.service.exception.EmailAlreadyExistsException;
 import pl.sda.customersafterkurs.service.exception.PeselAlreadyExistsException;
-import pl.sda.customersafterkurs.service.exception.PeselNotValidateException;
 import pl.sda.customersafterkurs.service.exception.VatAlreadyExistsException;
 
 import javax.transaction.Transactional;
@@ -21,10 +18,10 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 @Transactional
-class CustomerServiceTest {
+class CustomerRegistrationServiceTest {
 
     @Autowired
-    private CustomerService service;
+    private CustomerRegistrationService service;
 
     @Autowired
     private CustomerRepository repository;
