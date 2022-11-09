@@ -5,6 +5,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import pl.sda.customersafterkurs.entity.Address;
 import pl.sda.customersafterkurs.entity.CustomerRepository;
+import pl.sda.customersafterkurs.service.dto.AddAddressForm;
+import pl.sda.customersafterkurs.service.dto.CreatedAddress;
+import pl.sda.customersafterkurs.service.exception.CustomerNotExistsException;
 
 import javax.transaction.Transactional;
 
@@ -24,7 +27,7 @@ public class CustomerAddressService {
             throw new CustomerNotExistsException("customer not exists: " + form.getCustomerId());
         }
         final var address = reverseGeocoding.reverse(form.getLatitude(), form.getLongitude());
-        final var customer = repository.getReferenceById(form.getCustomerId); // u trenera getById, w razie problemów zmienić
+        final var customer = repository.getReferenceById(form.getCustomerId()); // u trenera getById (deprecated), w razie problemów zmienić
         customer.addAddress(address);
         repository.save(customer);
         return new CreatedAddress(customer.getId(),
