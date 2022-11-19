@@ -2,7 +2,13 @@ package pl.sda.customersafterkurs.service;
 
 import pl.sda.customersafterkurs.entity.Address;
 
-public interface ReverseGeocoding {
+interface ReverseGeocoding {
+
+    class ReverseGeoCodingException extends RuntimeException{
+        public ReverseGeoCodingException(String message, Throwable cause) {
+            super(message, cause);
+        }
+    }
 
     Address reverse(double latitude, double longitude);
 }

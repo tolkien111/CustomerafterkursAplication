@@ -16,6 +16,7 @@ import javax.transaction.Transactional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.anyDouble;
+import static org.mockito.Mockito.when;
 
 @SpringBootTest
 @Transactional
@@ -36,10 +37,10 @@ class CustomerAddressServiceTest {
         final var person = new Person("abs@wp.pl", "Jan", "Nowak", "99021211987");
         repository.save(person);
         var address = new Address("str", "Wawa", "01-200", "PL");
-        Mockito.when(reverseGeocoding.reverse(anyDouble(), anyDouble()))
+        when(reverseGeocoding.reverse(anyDouble(), anyDouble()))
                 .thenReturn(address);
 
-        final var form = new AddAddressForm(person.getId(), 52.242839, 20.9795852); //dzielna 78 warszawa
+        final var form = new AddAddressForm(person.getId(), 52.242839, 20.9795852);
 
 
         //When
