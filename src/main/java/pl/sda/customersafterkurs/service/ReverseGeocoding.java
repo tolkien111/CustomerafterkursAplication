@@ -5,6 +5,11 @@ import pl.sda.customersafterkurs.entity.Address;
 interface ReverseGeocoding {
 
     class ReverseGeoCodingException extends RuntimeException{
+
+        public ReverseGeoCodingException(String message) {
+            super(message);
+        }
+
         public ReverseGeoCodingException(String message, Throwable cause) {
             super(message, cause);
         }
