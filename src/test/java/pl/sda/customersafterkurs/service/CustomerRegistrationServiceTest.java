@@ -107,5 +107,6 @@ class CustomerRegistrationServiceTest {
         assertThrows(PeselNotValidateException.class, () -> service.registerPerson(form));
 
     }*/
- //
+
+
 }

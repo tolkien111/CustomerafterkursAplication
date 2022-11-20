@@ -11,8 +11,11 @@ import pl.sda.customersafterkurs.entity.CustomerRepository;
 import pl.sda.customersafterkurs.entity.Person;
 import pl.sda.customersafterkurs.service.dto.AddAddressForm;
 import pl.sda.customersafterkurs.service.dto.CreatedAddress;
+import pl.sda.customersafterkurs.service.exception.CustomerNotExistsException;
 
 import javax.transaction.Transactional;
+
+import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.anyDouble;
@@ -36,10 +39,9 @@ class CustomerAddressServiceTest {
         //Given
         final var person = new Person("abs@wp.pl", "Jan", "Nowak", "99021211987");
         repository.save(person);
-        var address = new Address("str", "Wawa", "01-200", "PL");
+        final var address = new Address("str", "Wawa", "01-200", "PL");
         when(reverseGeocoding.reverse(anyDouble(), anyDouble()))
                 .thenReturn(address);
-
         final var form = new AddAddressForm(person.getId(), 52.242839, 20.9795852);
 
 
@@ -57,5 +59,14 @@ class CustomerAddressServiceTest {
                 "PL"), createdAddress);
     }
 
+    @Test
+    void shouldNotAddAddressWhenCustomerNotExist(){
+        //Given
+        final var address = new Address("str", "Wawa", "01-200", "PL");
+        when(reverseGeocoding.reverse(anyDouble(),anyDouble())).thenReturn(address);
+        final var form = new AddAddressForm(UUID.randomUUID(), 52.242839, 20.9795852);
 
+        //When Then
+        assertThrows(CustomerNotExistsException.class, () -> service.addAddress(form));
+    }
 }
