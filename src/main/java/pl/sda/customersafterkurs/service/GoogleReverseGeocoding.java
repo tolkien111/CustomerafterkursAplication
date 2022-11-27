@@ -65,7 +65,7 @@ public class GoogleReverseGeocoding implements ReverseGeocoding {
 
 
             return new Address(
-                    street != null ? street + " " + streetNumber : streetNumber, //jeżeli street różne od null to street łącz z streetNumber w przeciwnym wypadku użyj tylko streetNumber
+                    street != null ? street + " " + streetNumber : city + " " + streetNumber, //jeżeli street różne od null to street łącz z streetNumber w przeciwnym wypadku użyj tylko streetNumber
                     city,
                     zipCode,
                     countryCode);
