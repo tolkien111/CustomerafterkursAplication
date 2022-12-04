@@ -5,6 +5,7 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Type;
+import pl.sda.customersafterkurs.service.dto.CustomerView;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -30,6 +31,10 @@ public abstract class Customer {
     @JoinColumn(name = "customer_id")
     private List<Address> addresses;
 
+    @Column(name = "customer_type", insertable = false, updatable = false)
+    @Enumerated (EnumType.STRING)
+    private CustomerType customerType;
+
     protected Customer(String email) { // też protected aby miały dostęp tylko klasy dziedziczące
         this.id = UUID.randomUUID();
         this.email = email;
@@ -41,6 +46,8 @@ public abstract class Customer {
             addresses.add(address);
         }
     }
+
+    public abstract String getName();
 
 
     @Override
@@ -55,4 +62,7 @@ public abstract class Customer {
     public int hashCode() {
         return Objects.hash(id, email);
     }
+
+
+
 }
