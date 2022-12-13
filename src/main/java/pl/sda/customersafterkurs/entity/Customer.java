@@ -5,7 +5,6 @@ import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Type;
-import pl.sda.customersafterkurs.service.dto.CustomerView;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -47,7 +46,7 @@ public abstract class Customer {
         }
     }
 
-    public abstract String getName();
+    public abstract String getName(); // do CustomerView
 
 
     @Override
