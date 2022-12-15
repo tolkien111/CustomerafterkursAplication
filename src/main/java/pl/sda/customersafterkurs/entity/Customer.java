@@ -4,7 +4,10 @@ package pl.sda.customersafterkurs.entity;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
 import org.hibernate.annotations.Type;
+import pl.sda.customersafterkurs.service.dto.CustomerDetails;
+import pl.sda.customersafterkurs.service.dto.CustomerView;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -48,6 +51,7 @@ public abstract class Customer {
 
     public abstract String getName(); // do CustomerView
 
+    public abstract CustomerDetails mapToDetails(); // do CustomerQuery
 
     @Override
     public boolean equals(Object o) {
@@ -63,5 +67,11 @@ public abstract class Customer {
     }
 
 
-
+    @NonNull
+    public CustomerView toView() {
+        return new CustomerView(id,
+                getName(),
+                email,
+                customerType);
+    }
 }

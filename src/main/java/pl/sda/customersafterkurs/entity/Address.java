@@ -4,6 +4,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NonNull;
 import org.hibernate.annotations.Type;
+import pl.sda.customersafterkurs.service.dto.AddressView;
 
 
 import javax.persistence.*;
@@ -38,4 +39,7 @@ public final class  Address { //final - nie można dziedziczyć
     }
 
 
+    public AddressView toView() {
+        return new AddressView(id, street, city, zipCode, countryCode);
+    }
 }
