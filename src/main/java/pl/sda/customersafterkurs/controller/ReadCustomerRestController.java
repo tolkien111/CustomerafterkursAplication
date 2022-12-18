@@ -26,7 +26,7 @@ final class ReadCustomerRestController {
         return query.listCustomers();
     }
 
-    @GetMapping({"/customerId"})
+    @GetMapping("/{customerId}")
     CustomerDetails getCustomerDetails(@PathVariable UUID customerId){
         return query.getById(customerId);
 

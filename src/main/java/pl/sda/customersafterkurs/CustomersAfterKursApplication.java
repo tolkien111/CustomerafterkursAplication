@@ -2,10 +2,12 @@ package pl.sda.customersafterkurs;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.SpringBootVersion;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.annotation.Profile;
 import org.springframework.context.event.EventListener;
+import org.springframework.core.SpringVersion;
 import org.springframework.stereotype.Component;
 import pl.sda.customersafterkurs.entity.Address;
 import pl.sda.customersafterkurs.entity.Company;
@@ -48,6 +50,7 @@ public class CustomersAfterKursApplication {
 			customer05.addAddress(new Address("aaa", "Elbląg", "82-100", "PL"));
 
 			repository.saveAllAndFlush(List.of(customer01, customer02, customer03, customer04, customer05));
+
 
 
 		}

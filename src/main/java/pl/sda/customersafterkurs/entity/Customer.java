@@ -53,6 +53,14 @@ public abstract class Customer {
 
     public abstract CustomerDetails mapToDetails(); // do CustomerQuery
 
+    @NonNull
+    public CustomerView toView() { //
+        return new CustomerView(getId(),
+                getName(),
+                getEmail(),
+                getCustomerType());
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -67,11 +75,5 @@ public abstract class Customer {
     }
 
 
-    @NonNull
-    public CustomerView toView() {
-        return new CustomerView(id,
-                getName(),
-                email,
-                customerType);
-    }
+
 }
